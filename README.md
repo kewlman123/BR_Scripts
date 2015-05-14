@@ -1,3 +1,3 @@
 # SN_BRScripts
 
-ServiceNow usefull business rules.
+ServiceNow business rules.

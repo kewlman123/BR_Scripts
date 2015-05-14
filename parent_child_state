@@ -1,0 +1,14 @@
+//children state same as parent state
+You need to write a insert/update business rule on the incident table as
+ 
+Condition: current.state.changes();
+Script:
+
+	1.	var grInc = new GlideRecord("incident");  
+	2.	grInc.addEncodedQuery('sys_id!'+current.sys_id+'^parent_incident='+current.sys_id);  
+	3.	grInc.query();  
+	4.	while(grInc.next())  
+	5.	{  
+	6.	     grInc.state = current.state;  
+	7.	     grInc.update();  
+	8.	}  

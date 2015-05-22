@@ -1,0 +1,6 @@
+//Redirect to incident number in reference ticket field
+
+current.call_type=='status_call'  //condition
+var URL='/incident.do?sys_id='+current.u_reference_ticket;
+	  gs.setRedirect(URL);
+	

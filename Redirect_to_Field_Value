@@ -4,3 +4,21 @@ current.call_type=='status_call'  //condition
 var URL='/incident.do?sys_id='+current.u_reference_ticket;
 	  gs.setRedirect(URL);
 	
+
+
+//This one checks the table class so it can be used for all tables
+
+var ctype = current.transferred_to.sys_class_name;  
+var url = ctype + '.do?sys_id=' + sysID;  
+
+
+
+//use self.location instead of window.location. Otherwise, the page you are redirecting to will be loaded in the top frame, i.e. //the left-hand side navigation pane will be gone.
+
+
+
+https://community.servicenow.com/thread/173984
+
+
+
+

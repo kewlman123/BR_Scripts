@@ -1,0 +1,15 @@
+//close incidents related to change
+
+//The code will close all the incidents related to change request. Run your BR before update on change_request table with the //condition as per your requirement.
+
+
+var gr = new GlideRecord(incident');  
+gr.addQuery('active','true');  
+gr.addQuery(''rfc',current.sys_id);  
+while(gr.query())  
+{  
+gr.state = 7; //assuming 7 is the closed choice value  
+gr.update();  
+}  
+
+

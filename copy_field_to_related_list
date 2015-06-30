@@ -1,0 +1,8 @@
+//copy field from ticket to ticket on related list
+
+current.short_description = current.parent.short_description;  
+  
+gs.log("Parent is: " + current.parent.number);  
+gs.log("Short Description: " + current.short_description);  
+gs.log("Parent Short Description: " + current.parent.short_description);  
+

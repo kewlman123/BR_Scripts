@@ -1,0 +1,17 @@
+
+
+//check for a duplicate serial number or asset tag in asset table
+
+function onBefore(current, previous) {
+  //This function will be automatically called when this rule is processed.
+  var gr = new GlideRecord('alm_asset');
+  gr.addQuery('serial_number', current.serial_number);
+  gr.addQuery('asset_tag', current.asset_tag);
+  gr.addQuery('sys_id','!=',current.sys_id);
+  gr.query();
+  if (gr.hasNext()) {
+   gs.addErrorMessage(gs.getMessage('Asset with same Asset tag or Serial Number is already exists for same company'));
+   current.setAbortAction('true');
+   }
+ 
+}

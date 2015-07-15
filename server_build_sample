@@ -1,0 +1,26 @@
+
+//After a Server Build ticket is closed, it will create a CI, and send a build script to @pharmerica.com
+//This first glide record will get the latest CI created with what was entered in the Hostname field
+var ci = new GlideRecord('cmdb_ci');
+  ci.addQuery('name', current.u_hostname);
+  ci.query();
+  while (ci.next()){
+    var new_ci = ci.sys_id;
+  }
+
+//This glide record will search for the parent RFC and target the Affected CIs related list
+var rec = new GlideRecord('task_ci');
+rec.addQuery('task', current.parent.sys_id);
+rec.addQuery('ci_item', current.cmdb_ci);
+rec.query();
+
+//This glide record is creating the entry for the new CI on the parent RFC's related list
+if(!rec.next()){
+   
+   //Create a new Affected CI record
+   var ci = new GlideRecord('task_ci');
+   ci.initialize();
+   ci.task = current.parent.sys_id;
+   ci.ci_item = new_ci;
+   ci.insert();
+}

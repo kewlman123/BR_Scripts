@@ -1,0 +1,11 @@
+//BR on before, on insert to find duplicate ci when creating a new ci
+
+function dup_ci(){
+var gr = new GlideRecord('cmdb_ci');
+if(gr.get(current.name)){       
+current.setAbortAction(true);
+gs.addErrorMessage('CI Already Exists');
+}
+}
+dup_ci();
+

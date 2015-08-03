@@ -1,0 +1,17 @@
+
+//BR after,update on sys_email table
+
+condition:  current.type=='sent' && current.sys_created_by!='system' && current.user!= '' && current.target_table=='incident'
+
+var updateIncidentNotes = new GlideRecord('incident');
+if(updateIncidentNotes.get(current.instance.toString()))
+{
+	updateIncidentNotes.work_notes = 'An email has been sent by '+current.sys_created_by;
+	updateIncidentNotes.update();
+}
+
+
+https://community.servicenow.com/thread/173800
+
+
+

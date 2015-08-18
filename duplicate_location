@@ -1,0 +1,16 @@
+Prevent Duplicate Locations
+
+on insert
+
+dup_loc();
+
+function dup_loc(){
+
+var gr = new GlideRecord('cmn_location');
+
+if(gr.get(current.name)){       
+current.setAbortAction(true);
+
+gs.addErrorMessage('***CAUTION***  Location Already Exists');
+}
+}

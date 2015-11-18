@@ -1,0 +1,14 @@
+Copy public notes from SC_task to parent RITM
+//conditions:  current.comments.changes() || current.work_notes.changes()
+
+var gr = new GlideRecord('sc_req_item');
+gr.get(current.request_item);
+gr.comments = current.comments.getJournalEntry(1);
+//gs.log('FOUND'+ " " + gr.getDisplayValue())
+//gr.work_notes = current.work_notes;
+gr.update();
+
+https://community.servicenow.com/thread/191761
+
+
+

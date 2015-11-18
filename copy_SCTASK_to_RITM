@@ -12,3 +12,31 @@ https://community.servicenow.com/thread/191761
 
 
 
+
+
+
+What I have done, is to use 2 different Business Rules. One to update the RITM and other to update the task. Attached the BR's
+Table: Catalog Task (Sc_task) // To update RITM
+Condition: current.comments.changes()
+Script:
+function onBefore(current, previous) {
+   var gr = new GlideRecord('sc_req_item'); 
+gr.get(current.request_item); 
+gr.comments = current.number + " Comment Added - " +  " --> " + current.comments; 
+gr.update(); 
+}
+ 
+Table: Requested Item (sc_req_item_ // To update Task
+Condition: current.comments.changes() || current.work_notes.changes()
+Script:
+function onBefore(current, previous) {
+      var gr = new GlideRecord('sc_task');
+gr.addQuery('request_item',current.sys_id);
+gr.query();
+while(gr.next()){
+gr.comments = current.comments;
+gr.work_notes = current.work_notes;
+gr.update();
+}
+}
+
